@@ -525,14 +525,18 @@ button:hover { background: #39595d; }
 	margin-top: 20px; padding: 10px;
 }
 #page p {
-	text-indent: 10px;
 	margin: 5px 0;
+	text-indent: 10px;
+	line-height: 1.2;
 }
 #page ul {
 	margin: 0 20px;
 	list-style: disc inside;
 }
-#page ul li { margin: 5px; }
+#page ul li {
+	margin: 5px;
+	line-height: 1.2;
+}
 
 
 .noselect {
