@@ -74,7 +74,8 @@ var DOM={
 	reset:'reset',
 	quote:'quote',
 	search:'search',ksearch:'keywords',
-	options:'options',optsaved:'optSaved',opterror:'optError'
+	options:'options',optsaved:'optSaved',opterror:'optError',
+	faq:'faq',about:'about'
 };
 document.addEventListener('mouseout',function(event){ event.preventDefault(); });
 document.addEventListener('DOMContentLoaded',function(){
@@ -103,6 +104,17 @@ document.addEventListener('DOMContentLoaded',function(){
 	DOM.reset.onclick=function(){ _reset(); _load(); };
 	DOM.quote.onclick=function(){ _quote(); };
 	DOM.search.onkeydown=function(event){ if(event.keyCode==13) _search(ksearch.value); };
+
+	_apply('.dynamic-link',function(element){
+		element.onclick=function(){
+			ajax(element.href,'get',null,null,
+				function(success){ DOM.list.innerHTML=success; },
+				function(error){ console.log(error); }
+			);
+		};
+	});
+	
+	DOM.about.onclick=function(){ ajax('faq.htm','get',null,null,function(success){ DOM.list.innerHTML=success; },function(error){ console.log(error); }); };
 
 	_apply('#optionlist input',function(element){
 		element.onkeydown=function(event){
