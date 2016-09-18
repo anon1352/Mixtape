@@ -113,9 +113,6 @@ document.addEventListener('DOMContentLoaded',function(){
 			);
 		};
 	});
-	
-	DOM.about.onclick=function(){ ajax('faq.htm','get',null,null,function(success){ DOM.list.innerHTML=success; },function(error){ console.log(error); }); };
-
 	_apply('#optionlist input',function(element){
 		element.onkeydown=function(event){
 			if(event.keyCode==13){
