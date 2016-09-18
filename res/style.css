@@ -530,7 +530,7 @@ button:hover { background: #39595d; }
 	line-height: 1.2;
 }
 #page ul {
-	margin: 0 20px;
+	margin: 15px 20px;
 	list-style: disc inside;
 }
 #page ul li {
