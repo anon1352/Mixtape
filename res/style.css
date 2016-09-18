@@ -513,13 +513,26 @@ button:hover { background: #39595d; }
 #search input ~ i { float: left; }
 
 
-#faq {}
-#faq h3 {}
-#faq h4 {}
-#faq p {}
-#faq ul {}
-#faq ul li {}
-#faq ul li ul li{}
+#page { text-align: left; }
+#page h3 {
+	margin: 0 0 30px 0; padding: 5px 0;
+	color: #333;
+	font-size: 24pt;
+	border-bottom: 2px solid #ccc;
+}
+#page h4 {
+	font-size: 16pt;
+	margin-top: 20px; padding: 10px;
+}
+#page p {
+	text-indent: 10px;
+	margin: 5px 0;
+}
+#page ul {
+	margin: 0 20px;
+	list-style: disc inside;
+}
+#page ul li { margin: 5px; }
 
 
 .noselect {
