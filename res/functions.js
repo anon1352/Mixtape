@@ -106,7 +106,8 @@ document.addEventListener('DOMContentLoaded',function(){
 	DOM.search.onkeydown=function(event){ if(event.keyCode==13) _search(ksearch.value); };
 
 	_apply('.dynamic-link',function(element){
-		element.onclick=function(){
+		element.onclick=function(event){
+			event.preventDefault();
 			ajax(element.href,'get',null,null,
 				function(success){ DOM.list.innerHTML=success; },
 				function(error){ console.log(error); }

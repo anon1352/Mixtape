@@ -513,6 +513,14 @@ button:hover { background: #39595d; }
 #search input ~ i { float: left; }
 
 
+#faq {}
+#faq h3 {}
+#faq h4 {}
+#faq p {}
+#faq ul {}
+#faq ul li {}
+#faq ul li ul li{}
+
 
 .noselect {
 	-moz-user-select: none;
