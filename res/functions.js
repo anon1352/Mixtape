@@ -205,14 +205,14 @@ function _load(tag){
 		options.index.forEach(function(element,index){ if(database[element].genre.indexOf(tag)>=0){ options.current.push(element); } });
 	}
 	var go=new Promise(function(resolve,reject){ // здесь мы только выводим кусок options.current (считая с начала и с лимитом options.limit)
-		if(options.current.length==0){ reject(2); return false; }
+		if(options.current.length==0){ reject(); return false; }
 		var entry='';
 		var j=options.limit;
 			if(j==0) j=options.index.length;
 			if(j>=options.current.length) j=options.current.length;
 		for(var i=0; i<j; i++){
-			entry=(Math.random()*options.current.length)<<0;
-			if(!_show(options.current[entry])){ reject(1); return false; }
+			entry=0; //entry=(Math.random()*options.current.length)<<0;
+			if(!_show(options.current[entry])){ reject(); return false; }
 			options.current.remove(entry);
 		}
 		options.shown+=j;
@@ -221,7 +221,7 @@ function _load(tag){
 	});
 	go.then(
 		function(){ _interact(); setTimeout(function(){ _loading(0); if(options.current.length>0) DOM.moar.reveal(); else DOM.moar.cloak(); },500); },
-		function(num){ _error('Ошибка при инициализации.','Catchable promise exception @ _load() @ '+num); }
+		function(err){ _error('Ошибка при инициализации.','Catchable promise exception @ _load() @ '+err); }
 	);
 	return true;
 }
@@ -295,7 +295,7 @@ function _ending(num){ // А ЗДЕСЬ ЕЩЁ ХУЁВЕЙ
 	return true;
 }
 function _show(id){
-	if(!database[id]){
+	if(id===undefined || !database[id]){
 		_error('Не найден ключ в базе данных.',id);
 		return false;
 	}
@@ -316,8 +316,7 @@ function _show(id){
 			subtitle.classList.add('subtitle');
 		title.appendChilds(orgtitle,subtitle);
 	var ambula=_create('div');
-		ambula.innerHTML=_ellipsis(data.ambula);
-		ambula.classList.add('ambula');
+		if(data.ambula){ ambula.innerHTML=_ellipsis(data.ambula); ambula.classList.add('ambula'); }
 	var moar=_create('div');
 		moar.innerHTML="Подробнее";
 		moar.classList.add('full');
@@ -377,12 +376,15 @@ function _show(id){
 	return true;
 }
 function _link(link){
+	if(!link) return '(временно отсутствует)';
 	var id=/https?:\/\/(.+\.)?(\w+)\.\w+\/.+/i.exec(link),r='<a href="'+link+'" target="_blank" class="link link-';
 	switch(id[2]){
-		case 'mega': r+='mega">MEGA.NZ'; break;
+		case 'mega': r+='mega">Mega.nz'; break;
+		case 'catbox': r+='catbox">Catbox.moe'; break;
 		case 'mixtape': r+='mixtape">Mixtape.moe'; break;
 		case '1339': r+='pomf1339">1339.cf'; break;
-		default: r+='wtf">Файлообменник';
+		case 'rghost': r+='rghost">RGhost'; break;
+		default: r+='wtf">Хуй знает какой файлообменник';
 	}
 	r+='</a>';
 	return r;
@@ -462,3 +464,35 @@ function _quote(){ DOM.quote.innerHTML=quotes[(Math.random()*quotes.length)<<0];
 - Planning `done` section
 - Planning videostream
 */
+
+/*## AJAX ###################################################################################################################################################*/
+function createXMLHTTPObject() {
+	var XMLHttpFactories=[
+		function(){return new XMLHttpRequest();},
+		function(){return new ActiveXObject("Msxml2.XMLHTTP");},
+		function(){return new ActiveXObject("Msxml3.XMLHTTP");},
+		function(){return new ActiveXObject("Microsoft.XMLHTTP");}
+	];
+	var xmlhttp=false;
+	for(var i=0;i<XMLHttpFactories.length;i++) { try { xmlhttp = XMLHttpFactories[i](); } catch (e) { continue; } break; }
+	return xmlhttp;
+}
+function ajax_success(data){ console.log(data); }
+function ajax_error(xhr,status){ console.log('HTTP '+xhr+' '+status); }
+function ajax_pending(state){ if(state) console.log('ajax state opened'); else console.log('ajax state closed'); }
+function ajax(url,method,data,headers,success,error) {
+	if(!data && method=='POST') return false;
+	if(!(req=createXMLHTTPObject())) return false;
+	if(typeof success!='function') success=ajax_success;
+	if(typeof error!='function') error=ajax_success;
+	req.open(method,url,true); // true for async
+	if(!!headers) for(var i in headers) req.setRequestHeader(i, headers[i]);
+	req.send(data);
+	req.onreadystatechange=function(){
+		if(req.readyState==4){
+			if(req.status==200 || req.status==304) success(req.responseText,req.getResponseHeader('X-AJAX-Response'));
+			else error(req.status,req.statusText);
+		}
+	};
+	return req.responseText;
+}

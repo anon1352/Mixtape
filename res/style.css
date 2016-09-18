@@ -218,10 +218,13 @@ article .full:hover { background: #306d6b; }
 article .full > div {
 	position: fixed;
 	top: 0; left: 200px;
-	height: 100%;
+	height: 100%; width: 100%;
+	margin-left: -200px;
+	padding-left: 200px;
 	text-align: center;
 	cursor: default;
 	z-index: 9;
+	box-sizing: border-box;
 }
 article .full > div > div {
 	width: 90%; height: 90vh;
@@ -229,7 +232,7 @@ article .full > div > div {
 	color: #333; background: white;
 	text-align: left;
 	text-shadow: none;
-	border: 1px solid #777;
+	border: 1px solid #111;
 	box-sizing: border-box;
 	box-shadow: 0 0 32px #333;
 	z-index: 9;
@@ -406,8 +409,8 @@ button:hover { background: #39595d; }
 	display: block;
 	position: fixed;
 	top: 238px; left: 200px;
-	padding: 3px 0;
-	width: 500px; height: 210px;
+	padding: 0;
+	width: 432px; height: 240px;
 	background: #0b0b0e;
 	cursor: default;
 	box-sizing: border-box;
@@ -424,14 +427,14 @@ button:hover { background: #39595d; }
 	font-size: 8pt;
 	text-align: left;
 	line-height: 20px;
-	padding: 2px 0;
+	padding: 1px;
 	box-sizing: border-box;
 	cursor: default;
 }
 #options ul li:hover { background: #39595d; }
 #options ul li span {
 	display: inline-block;
-	width: 210px;
+	width: 140px;
 	text-align: right;
 	padding: 0 20px;
 	box-sizing: border-box;
