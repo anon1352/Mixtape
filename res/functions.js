@@ -55,7 +55,8 @@ var options={
 		rnd:{count:0,title:'Anonymous Singles'}
 	},
 	boards:{
-		'cc':{name:'Кокосовый нульчан',address:'http://0chan.cc/'}
+		'cc':{name:'Кокосовый нульчан',address:'http://0chan.cc/'},
+		'ni':{name:'Нигма',address:'?'}
 	},
 	labels:{
 		'ra':{name:'Radio Anonymous',address:'https://anon.fm/'}
@@ -208,11 +209,12 @@ function _load(tag){
 	DOM.error.cloak();
 	if(options.index.length==0){ _error('Ошибка при подзагрузке: индекс пуст, показывать нечего.','Zero index @ _load()'); return false; }
 	if(options.shown==0 && !options.searching){ options.current=options.index.slice(0); }
-	if(tag!==undefined){
+	if(tag!==undefined && options.albums[tag]!==undefined){
 		_reset();
 		options.tag=tag;
 		options.current=[];
-		options.index.forEach(function(element,index){ if(database[element].genre.indexOf(tag)>=0){ options.current.push(element); } });
+		options.index.forEach(function(element,index){ if(database[element].tag==tag){ options.current.push(element); } });
+		if(options.current.length==0){ _error('Ничего не найдено.'); _loading(0); return false; }
 	}
 	var go=new Promise(function(resolve,reject){ // здесь мы только выводим кусок options.current (считая с начала и с лимитом options.limit)
 		if(options.current.length==0){ reject(); return false; }
@@ -361,7 +363,8 @@ function _show(id){
 						data.genre.forEach(function(element,index){ F_genre.innerHTML+='<kbd class="tag" data-tag="'+element+'">'+element+'</kbd>&nbsp;'; });
 					var F_board=_create('div');
 						F_board.classList.add('full-board');
-						F_board.innerHTML=(options.boards[data.board]?'<noindex><a href="'+options.boards[data.board].address+'" target="_blank" class="board board-'+data.board+'">'+options.boards[data.board].name+'</a></noindex>':data.board);
+						if(data.board=='no') F_board.innerHTML='(нет борды)';
+						else F_board.innerHTML=(options.boards[data.board]?'<noindex><a href="'+options.boards[data.board].address+'" target="_blank" class="board board-'+data.board+'">'+options.boards[data.board].name+'</a></noindex>':data.board);
 					var F_specs=_create('div');
 						F_specs.classList.add('full-specs');
 						F_specs.innerHTML='<span>'+data.bitrate+' kbps / '+(data.stereo?(data.stereo>1?'Joint Stereo / ':'Stereo / '):'Mono / ')+(data.vbr?'VBR':(data.cbr?'CBR':'ABR'));

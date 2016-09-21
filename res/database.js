@@ -84,7 +84,7 @@ var database={
 		duration:'1:11:25:01',
 		genre:['dub','dnb','flow','atmospheric','light'],
 		bitrate:208,stereo:2,vbr:true,
-		board:'cc',
+		board:'no',
 		label:'ra',
 		link:'',
 		tracklist:''
@@ -102,7 +102,7 @@ var database={
 		duration:'1:25:00:22',
 		genre:['dub','dnb','step','dubstep','hardtrance'],
 		bitrate:230,stereo:2,vbr:true,
-		board:'cc',
+		board:'no',
 		label:'ra',
 		link:'https://files.catbox.moe/5xgtbh.rar',
 		tracklist:''
@@ -120,7 +120,7 @@ var database={
 		duration:'1:08:00:52',
 		genre:['dub','dnb','neuro','neurofunk','neuropunk','step'],
 		bitrate:235,stereo:2,vbr:true,
-		board:'cc',
+		board:'no',
 		label:'ra',
 		link:'https://files.catbox.moe/tfdvq5.rar',
 		tracklist:''
@@ -138,7 +138,7 @@ var database={
 		duration:'1:26:34:00',
 		genre:['dub','dnb','atmospheric','light'],
 		bitrate:223,stereo:2,vbr:true,
-		board:'cc',
+		board:'no',
 		label:'ra',
 		link:'https://files.catbox.moe/wautxt.rar',
 		tracklist:''
@@ -156,9 +156,27 @@ var database={
 		duration:'1:38:46:26',
 		genre:['dub','dnb','dark','step','ambient','chillstep'],
 		bitrate:221,stereo:2,vbr:true,
-		board:'cc',
+		board:'no',
 		label:'ra',
 		link:'https://files.catbox.moe/w04c59.rar',
+		tracklist:''
+	},
+	e10:{
+		tag:'nae',
+		title:'NAE Mixtape #7.0',
+		subtitle:'Hyperdream - Sekitei',
+		edition:'SS-tan',color:'a9cd86',
+		ambula:'',
+		fabula:'',
+		poster:'front7.0.png',
+		date:'23 сентября 2016',
+		size:'unknown',
+		duration:'unknown',
+		genre:['ambient','chillout','age','light'],
+		bitrate:0,stereo:2,vbr:true,
+		board:'ni',
+		label:'ra',
+		link:'',
 		tracklist:''
 	}
 	/*

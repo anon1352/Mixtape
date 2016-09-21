@@ -99,6 +99,7 @@ nav li {
 nav li i {
 	width: 40px;
 	text-align: center;
+	font-size:14px!important;
 	line-height: 30px!important;
 	vertical-align: top;
 }
@@ -150,7 +151,7 @@ article {
 	vertical-align: top;
 	width: 300px; height: 300px;
 	margin: 20px;
-	background-position: 0 0;
+	background-position: center center;
 	background-size: 300px 300px;
 	background-repeat: no-repeat;
 	background-color: transparent;
@@ -573,4 +574,5 @@ button:hover { background: #39595d; }
 	vertical-align: middle;
 }
 .board-cc:before { background-image:url(board/cc.png); }
+.board-ni:before { background-image:url(board/ni.png); }
 .label-ra:before { background-image:url(label/ra.gif); }
