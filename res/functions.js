@@ -21,7 +21,7 @@ var reset={total:0,shown:0,current:[],tag:'',searching:false};
 var options={
 	debug:1,
 	theme:0,
-	limit:12,
+	limit:6,
 	index:Object.keys(database),
 	total:0,
 	shown:0,
