@@ -251,6 +251,35 @@ button {
 }
 button:hover { background: #39595d; }
 
+.switch { display:none; }
+.switch ~ .switch-box { display:none; }
+.switch:checked ~ .switch-box { display:inherit; }
+.switch ~ .switch-label:before { content:'+ '; }
+.switch:checked ~ .switch-label:before { content:'- '; }
+.switch-label {}
+.switch-box {}
+
+.button {
+	display: inline-block;
+	background: #f9f9f9;
+	margin: 10px; padding: 0 10px;
+	line-height: 25px;
+	font-weight: bold;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	outline:none;
+	cursor: pointer;
+}
+.button:hover {
+	background: #fdfdfd;
+	border-color: #bbb;
+	box-shadow: 0 0 3px #eee;
+}
+.button:focus, .button:active {
+	background: #f3f3f3;
+	box-shadow: 0 0 3px #eee, inset 0 0 3px #ddd;
+}
+
 .full .full-poster {
 	float: left;
 	width: 300px; height: 300px;
@@ -268,6 +297,7 @@ button:hover { background: #39595d; }
 .full-genre:before,
 .full-board:before,
 .full-specs:before,
+.full-posters:before,
 .full-label:before,
 .full-link:before {
 	display: inline-block;
@@ -313,6 +343,8 @@ button:hover { background: #39595d; }
 .full-board {}
 .full-specs:before { content:'Характеристики'; }
 .full-specs {}
+.full-posters:before { content:'Обложки'; }
+.full-posters {}
 .full-label:before { content:'Лейбл'; }
 .full-label {}
 .full-fabula {

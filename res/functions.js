@@ -143,6 +143,36 @@ document.addEventListener('DOMContentLoaded',function(){
 	_load();
 	_quote();
 },false);
+function createXMLHTTPObject() {
+	var XMLHttpFactories=[
+		function(){return new XMLHttpRequest();},
+		function(){return new ActiveXObject("Msxml2.XMLHTTP");},
+		function(){return new ActiveXObject("Msxml3.XMLHTTP");},
+		function(){return new ActiveXObject("Microsoft.XMLHTTP");}
+	];
+	var xmlhttp=false;
+	for(var i=0;i<XMLHttpFactories.length;i++) { try { xmlhttp = XMLHttpFactories[i](); } catch (e) { continue; } break; }
+	return xmlhttp;
+}
+function ajax_success(data){ console.log(data); }
+function ajax_error(xhr,status){ console.log('HTTP '+xhr+' '+status); }
+function ajax_pending(state){ if(state) console.log('ajax state opened'); else console.log('ajax state closed'); }
+function ajax(url,method,data,headers,success,error) {
+	if(!data && method=='POST') return false;
+	if(!(req=createXMLHTTPObject())) return false;
+	if(typeof success!='function') success=ajax_success;
+	if(typeof error!='function') error=ajax_success;
+	req.open(method,url,true); // true for async
+	if(!!headers) for(var i in headers) req.setRequestHeader(i, headers[i]);
+	req.send(data);
+	req.onreadystatechange=function(){
+		if(req.readyState==4){
+			if(req.status==200 || req.status==304) success(req.responseText,req.getResponseHeader('X-AJAX-Response'));
+			else error(req.status,req.statusText);
+		}
+	};
+	return req.responseText;
+}
 function _opt_load(){
 	var S=localStorage.getItem('customize');
 	if(!S) _opt_save();
@@ -270,7 +300,7 @@ function _search(keywords){
 	if(options.current.length==0) _error('Ничего не найдено.');
 	else _load();
 }
-function _count(i,total){ var C=_id('counter'),o=(i<total?i:total); C.innerHTML="Показано "+o+" "+_ending(o)+" из "+total; }
+function _count(i,total){ var C=_id('counter'),o=(i<total?i:total); C.innerHTML=_ending(o)+' из '+total; } //"Показано "+o+" "+_ending(o)+" из "+total
 function _ellipsis(text){ // ВСЁ ОЧЕНЬ ХУЁВО
 	var subtext=text.substring(0,255),cut=0,firstline=true,length=255,lines=0,iterator=0;
 	for(var position=0; position<length; position++){
@@ -288,6 +318,14 @@ function _ellipsis(text){ // ВСЁ ОЧЕНЬ ХУЁВО
 	return subtext;
 }
 function _ending(num){ // А ЗДЕСЬ ЕЩЁ ХУЁВЕЙ
+	switch(num%100){
+		case 11:
+		case 12:
+		case 13:
+		case 14:
+			return 'Показано '+num+' кассет';
+		default:break;
+	}
 	switch(num%10){
 		case 0:
 		case 5:
@@ -295,14 +333,14 @@ function _ending(num){ // А ЗДЕСЬ ЕЩЁ ХУЁВЕЙ
 		case 7:
 		case 8:
 		case 9:
-			return 'альбомов';
+			return 'Показано '+num+' кассет';
 		case 1:
-			return 'альбом';
+			return 'Показана '+num+' кассета';
 		case 2:
 		case 3:
 		case 4:
-			return 'альбома';
-		default:return 'микстейп';
+			return 'Показано '+num+' кассет';
+		default:return 'Показано '+num+' кассет';
 	}
 	return true;
 }
@@ -368,6 +406,9 @@ function _show(id){
 					var F_specs=_create('div');
 						F_specs.classList.add('full-specs');
 						F_specs.innerHTML='<span>'+data.bitrate+' kbps / '+(data.stereo?(data.stereo>1?'Joint Stereo / ':'Stereo / '):'Mono / ')+(data.vbr?'VBR':(data.cbr?'CBR':'ABR'));
+					var F_posters=_create('div');
+						F_posters.classList.add('full-posters');
+						F_posters.innerHTML='<a href="res/poster/'+data.poster+'" target="blank">Front</a>, <a href="res/poster/'+data.back+'" target="_blank">Back</a>';
 					var F_label=_create('div');
 						F_label.classList.add('full-label');
 						F_label.innerHTML=options.labels[data.label]?'<noindex><a class="label label-'+data.label+'" href="'+options.labels[data.label].address+'" target="_blank">'+options.labels[data.label].name+'</a></noindex>':data.label;
@@ -380,7 +421,10 @@ function _show(id){
 					var F_fabula=_create('div');
 						F_fabula.innerHTML=data.fabula;
 						F_fabula.classList.add('full-fabula');
-					F_about.appendChilds(F_title,F_subtitle,F_edition,F_date,F_duration,F_genre,F_board,F_specs,F_label,F_link,F_ambula,F_fabula); // закурил
+					var F_tracklist=_create('div');
+						F_tracklist.classList.add('full-tracklist');
+						F_tracklist.innerHTML='<input name="'+id+'" type="checkbox" class="switch" /><label for="'+id+'" class="button switch-label">Треклист</label><div class="switch-box">'+data.tracklist+"</div>";
+					F_about.appendChilds(F_title,F_subtitle,F_edition,F_date,F_duration,F_genre,F_board,F_specs,F_posters,F_label,F_link,F_ambula,F_fabula,F_tracklist); // закурил
 				expand.appendChilds(F_poster,F_about);
 			expandT.appendChild(expand);
 		moar.appendChild(expandT);
@@ -395,6 +439,7 @@ function _link(link){
 		case 'mega': r+='mega">Mega.nz'; break;
 		case 'catbox': r+='catbox">Catbox.moe'; break;
 		case 'mixtape': r+='mixtape">Mixtape.moe'; break;
+		case 'fuwafuwa': r+='fuwa">fuwa.moe'; break;
 		case '1339': r+='pomf1339">1339.cf'; break;
 		case 'rghost': r+='rghost">RGhost'; break;
 		default: r+='wtf">Хуй знает какой файлообменник';
@@ -477,35 +522,3 @@ function _quote(){ DOM.quote.innerHTML=quotes[(Math.random()*quotes.length)<<0];
 - Planning `done` section
 - Planning videostream
 */
-
-/*## AJAX ###################################################################################################################################################*/
-function createXMLHTTPObject() {
-	var XMLHttpFactories=[
-		function(){return new XMLHttpRequest();},
-		function(){return new ActiveXObject("Msxml2.XMLHTTP");},
-		function(){return new ActiveXObject("Msxml3.XMLHTTP");},
-		function(){return new ActiveXObject("Microsoft.XMLHTTP");}
-	];
-	var xmlhttp=false;
-	for(var i=0;i<XMLHttpFactories.length;i++) { try { xmlhttp = XMLHttpFactories[i](); } catch (e) { continue; } break; }
-	return xmlhttp;
-}
-function ajax_success(data){ console.log(data); }
-function ajax_error(xhr,status){ console.log('HTTP '+xhr+' '+status); }
-function ajax_pending(state){ if(state) console.log('ajax state opened'); else console.log('ajax state closed'); }
-function ajax(url,method,data,headers,success,error) {
-	if(!data && method=='POST') return false;
-	if(!(req=createXMLHTTPObject())) return false;
-	if(typeof success!='function') success=ajax_success;
-	if(typeof error!='function') error=ajax_success;
-	req.open(method,url,true); // true for async
-	if(!!headers) for(var i in headers) req.setRequestHeader(i, headers[i]);
-	req.send(data);
-	req.onreadystatechange=function(){
-		if(req.readyState==4){
-			if(req.status==200 || req.status==304) success(req.responseText,req.getResponseHeader('X-AJAX-Response'));
-			else error(req.status,req.statusText);
-		}
-	};
-	return req.responseText;
-}
