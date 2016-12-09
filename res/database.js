@@ -266,7 +266,7 @@ var database={
 		bitrate:189,stereo:2,vbr:true,
 		board:'ni',
 		label:'ra',
-		link:'',
+		link:'https://p.fuwafuwa.moe/gcgpsg.mp3',
 		tracklist:''
 	}
 	/*
