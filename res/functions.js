@@ -227,7 +227,7 @@ function _interact(){
 	_apply('.tag',function(element){ element.onclick=function(){ _load(this.dataset.tag); }; });
 	_apply('.full-tracklist',function(element){
 		element.querySelector('label').onclick=function(event){
-			ajax('res/'+this.dataset.href,'get',null,null,
+			ajax('res/list/'+this.dataset.href,'get',null,null,
 				function(success){ _id(this.dataset.box).innerHTML='<pre>'+success+'</pre>'; },
 				function(error){ _log(error); }
 			);

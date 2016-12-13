@@ -33,7 +33,7 @@ var database={
 		board:'cc',
 		label:'ra',
 		link:'https://mega.nz/#!fhlB2J6T!-hQwZ7TrRSWvY5cBBJ_uhnAEXZqT-TWQPCYn_dCUyD4',
-		tracklist:''
+		tracklist:'track.list.1'
 	},
 	e20:{
 		tag:'nae',
@@ -51,7 +51,7 @@ var database={
 		board:'cc',
 		label:'ra',
 		link:'https://p.fuwafuwa.moe/jbkxwq.rar',
-		tracklist:''
+		tracklist:'track.list.2.0'
 	},
 	e21:{
 		tag:'nae',
@@ -69,7 +69,7 @@ var database={
 		board:'cc',
 		label:'ra',
 		link:'https://p.fuwafuwa.moe/csbypx.rar',
-		tracklist:''
+		tracklist:'track.list.2.1'
 	},
 	e22:{
 		tag:'nae',
@@ -87,7 +87,7 @@ var database={
 		board:'ni',
 		label:'ra',
 		link:'https://p.fuwafuwa.moe/lnymbo.rar',
-		tracklist:''
+		tracklist:'track.list.2.2'
 	},
 	e41:{
 		tag:'nae',
@@ -123,7 +123,7 @@ var database={
 		board:'ni',
 		label:'ra',
 		link:'',
-		tracklist:''
+		tracklist:'track.list.5.0'
 	},
 	e51:{
 		tag:'nae',
@@ -141,7 +141,7 @@ var database={
 		board:'ni',
 		label:'ra',
 		link:'https://files.catbox.moe/5xgtbh.rar',
-		tracklist:''
+		tracklist:'track.list.5.1'
 	},
 	e52:{
 		tag:'nae',
@@ -159,7 +159,7 @@ var database={
 		board:'ni',
 		label:'ra',
 		link:'https://files.catbox.moe/tfdvq5.rar',
-		tracklist:''
+		tracklist:'track.list.5.2'
 	},
 	e53:{
 		tag:'nae',
@@ -177,7 +177,7 @@ var database={
 		board:'ni',
 		label:'ra',
 		link:'https://files.catbox.moe/wautxt.rar',
-		tracklist:''
+		tracklist:'track.list.5.3'
 	},
 	e54:{
 		tag:'nae',
@@ -195,7 +195,25 @@ var database={
 		board:'ni',
 		label:'ra',
 		link:'https://files.catbox.moe/w04c59.rar',
-		tracklist:''
+		tracklist:'track.list.5.4'
+	},
+	e60:{
+		tag:'nae',
+		title:'NAE Mixtape #6.0',
+		subtitle:'Cannon General',
+		edition:'RAWR',color:'1b715f',
+		ambula:'',
+		fabula:'',
+		poster:'front-6.0.png',back:'back-6.0.png',
+		date:'3 декабря 2016',
+		size:'124 288 344',
+		duration:'1:09:42:00',
+		genre:['industrial','rave','electronic','hard','dance'],
+		bitrate:237,stereo:2,vbr:true,
+		board:'ni',
+		label:'ra',
+		link:'',
+		tracklist:'track.list.6.0'
 	},
 	e70:{
 		tag:'nae',
@@ -231,7 +249,7 @@ var database={
 		board:'ni',
 		label:'ra',
 		link:'https://p.fuwafuwa.moe/vwdrma.mp3',
-		tracklist:''
+		tracklist:'track.list.7.0I'
 	},
 	e702:{
 		tag:'nae',
@@ -267,7 +285,7 @@ var database={
 		board:'ni',
 		label:'ra',
 		link:'https://p.fuwafuwa.moe/wrizdi.mp3',
-		tracklist:''
+		tracklist:'track.list.7.1'
 	},
 	e72:{
 		tag:'nae',
@@ -285,7 +303,7 @@ var database={
 		board:'ni',
 		label:'ra',
 		link:'https://p.fuwafuwa.moe/gcgpsg.mp3',
-		tracklist:''
+		tracklist:'track.list.7.2'
 	}
 	/*
 	e:{
