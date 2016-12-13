@@ -41,7 +41,7 @@ var options={
 		optDebug:1
 	},
 	albums:{
-		nae:{count:0,title:'NAE'},
+		nae:{count:0,title:'NAE'}/*,
 		rac:{count:0,title:'RAC'},
 		sti:{count:0,title:'Семён Незаметный'},
 		brm:{count:0,title:'Бредовые мелодии'},
@@ -52,7 +52,7 @@ var options={
 		rae:{count:0,title:'RA Experimental'},
 		kmm:{count:0,title:'Пока котики мяукают, мир разлагается'},
 		nbt:{count:0,title:'0chan 8-bit Mixtapes'},
-		rnd:{count:0,title:'Anonymous Singles'}
+		rnd:{count:0,title:'Anonymous Singles'}*/
 	},
 	boards:{
 		'cc':{name:'Кокосовый нульчан',address:'http://0chan.cc/'},
@@ -78,7 +78,7 @@ var DOM={
 	options:'options',optsaved:'optSaved',opterror:'optError',
 	faq:'faq',about:'about'
 };
-document.addEventListener('mouseout',function(event){ event.preventDefault(); });
+
 document.addEventListener('DOMContentLoaded',function(){
 	options.total=options.index.length;
 	for(var element in DOM){ DOM[element]=_id(DOM[element]); }
@@ -214,17 +214,25 @@ function _opt_show(){
 }
 function _loading(is){ if(is) DOM.loading.reveal(); else DOM.loading.cloak(); return true; }
 function _error(){
-	console.log('\t[RAMP] /!\\ '+arguments[0]+(options.debug&&arguments[1]?' <'+arguments[1]+'>':''));
+	_log('\t[RAMP] /!\\ '+arguments[0]+(options.debug&&arguments[1]?' <'+arguments[1]+'>':''));
 	DOM.error.innerHTML=/*DOM.error.innerHTML+*/arguments[0]+(options.debug&&arguments[1]?' &lt;'+arguments[1]+'&gt;<br/>':'<br/>');
 	DOM.error.reveal();
 }
 function _random(list){ return Object.keys(database)[(Math.random()*options.total)<<0]; }
 function _interact(){
 	_apply('.full',function(element){
-		element.onclick=function(event){ if(event.target.nodeName=="A") return true; if(event.target!=this) return false; this.dataset.toggle="true"; };
-		element.querySelector('div').onclick=function(event){ if(event.target.nodeName=="A") return true; if(event.target.parentNode!=element) return false; element.dataset.toggle="false"; };
+		element.onclick=function(event){ if(event.target==this){ console.log('click'); this.dataset.toggle="true"; } return true; };
+		element.querySelector('div').onclick=function(event){ if(event.target==this){ console.log('click'); element.dataset.toggle="false"; } return true; };
 	});
 	_apply('.tag',function(element){ element.onclick=function(){ _load(this.dataset.tag); }; });
+	_apply('.full-tracklist',function(element){
+		element.querySelector('label').onclick=function(event){
+			ajax('res/'+this.dataset.href,'get',null,null,
+				function(success){ _id(this.dataset.box).innerHTML='<pre>'+success+'</pre>'; },
+				function(error){ _log(error); }
+			);
+		}
+	});
 }
 function _log(){ for(var A in arguments) console.log(arguments[A]); } // для краткости
 function _reset(){
@@ -423,7 +431,7 @@ function _show(id){
 						F_fabula.classList.add('full-fabula');
 					var F_tracklist=_create('div');
 						F_tracklist.classList.add('full-tracklist');
-						F_tracklist.innerHTML='<input name="'+id+'" type="checkbox" class="switch" /><label for="'+id+'" class="button switch-label">Треклист</label><div class="switch-box">'+data.tracklist+"</div>";
+						F_tracklist.innerHTML='<input name="'+id+'s" id="'+id+'s" type="checkbox" class="switch" /><label for="'+id+'s" class="button switch-label" data-box="'+id+'b" data-href="'+data.tracklist+'">Треклист</label><div id="'+id+'b" class="switch-box"></div>';
 					F_about.appendChilds(F_title,F_subtitle,F_edition,F_date,F_duration,F_genre,F_board,F_specs,F_posters,F_label,F_link,F_ambula,F_fabula,F_tracklist); // закурил
 				expand.appendChilds(F_poster,F_about);
 			expandT.appendChild(expand);

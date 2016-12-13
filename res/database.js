@@ -4,7 +4,7 @@ var database={
 		title:'NAE Mixtape #0',
 		subtitle:'Winds of Novel',
 		edition:'Malahitochka',color:'00ff42',
-		ambula:'Всего сетов будет около 9, каждый на определённый жанр. Эфиры с релизами будут по пятницам в то же время (если не будут мешать другим эфирам, тогда время будет перенесено). Жанр первой кассеты: cractro, intro, chiptune. Жанром следующей будет idm, dark ambient и dnb. Стоимость сборника 99 кокосов.',
+		ambula:'Жанр первой кассеты: cractro, intro, chiptune. Стоимость сборника 99 кокосов, как и всегда.',
 		fabula:'Кратко о проекте: музыкальный эпос в 9 частях с разными жанрами призван быть саундтреком к истории освоения новой планеты и приключений анона на ней. Как нетрудно догадаться, это тесно коррелирует с освоением новой борды и излаганием некоторых моментов с помощью музыки. Так, название первого сета переводится как «Ветер неизведанного», олицетворяя ощущение человека, впервые ступившего на непокоренную планету и решившего, что здесь будет его новый дом.',
 		poster:'front-0.0.png',back:'back-0.0.png',
 		date:'29 января 2016',
@@ -15,7 +15,7 @@ var database={
 		board:'cc',
 		label:'ra',
 		link:'https://mega.nz/#!TkVCFZpa!rflpJ7lFvpThRcSuNOU_w8Q30sL2H_EFsdjn4G_ak9E',
-		tracklist:''
+		tracklist:'track.list.0'
 	},
 	e10:{
 		tag:'nae',
@@ -71,6 +71,24 @@ var database={
 		link:'https://p.fuwafuwa.moe/csbypx.rar',
 		tracklist:''
 	},
+	e22:{
+		tag:'nae',
+		title:'NAE Mixtape #2.2',
+		subtitle:'OM(K Vision: The Kapustin Yar Incident',
+		edition:'Trilogy',color:'5b5bdc',
+		ambula:'Продолжение межзвёздных странствий.',
+		fabula:'(будет здесь, когда будет реализована подгрузка текста из файлов, слишком большая паста)',
+		poster:'front-2.2.png',back:'back-2.2.png',
+		date:'11 декабря 2016',
+		size:'218 639 904',
+		duration:'2:07:35:00',
+		genre:['psychedelic','trance','goa','psy','fullon','core'],
+		bitrate:228,stereo:2,vbr:true,
+		board:'ni',
+		label:'ra',
+		link:'https://p.fuwafuwa.moe/lnymbo.rar',
+		tracklist:''
+	},
 	e41:{
 		tag:'nae',
 		title:'NAE Mixtape #4.1',
@@ -111,7 +129,7 @@ var database={
 		tag:'nae',
 		title:'NAE Mixtape #5.1',
 		subtitle:'Random Gate',
-		edition:'Rukia',color:'88ffff',
+		edition:'Ruby',color:'88ffff',
 		ambula:'',
 		fabula:'',
 		poster:'front-5.1.png',back:'back-5.1.png',
