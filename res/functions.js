@@ -221,17 +221,19 @@ function _error(){
 function _random(list){ return Object.keys(database)[(Math.random()*options.total)<<0]; }
 function _interact(){
 	_apply('.full',function(element){
-		element.onclick=function(event){ if(event.target==this){ console.log('click'); this.dataset.toggle="true"; } return true; };
-		element.querySelector('div').onclick=function(event){ if(event.target==this){ console.log('click'); element.dataset.toggle="false"; } return true; };
+		element.onclick=function(event){ if(event.target==this){ this.dataset.toggle="true"; } return true; };
+		element.querySelector('div').onclick=function(event){ if(event.target==this){ element.dataset.toggle="false"; } return true; };
 	});
 	_apply('.tag',function(element){ element.onclick=function(){ _load(this.dataset.tag); }; });
 	_apply('.full-tracklist',function(element){
 		element.querySelector('label').onclick=function(event){
 			var set=this.dataset; // kosteel-driven programming
-			if(set.state!==undefined && set.state!='1') ajax('res/list/'+set.href,'get',null,null,
-				function(success){ _id(set.box).innerHTML='<pre>'+success+'</pre>'; set.state='1'; },
-				function(error){ _log(error); }
-			);
+			if(set.state===undefined || set.state!='1'){
+				ajax('res/list/'+set.href,'get',null,null,
+					function(success){ _id(set.box).innerHTML='<pre>'+success+'</pre>'; set.state='1'; },
+					function(error){ _log(error); }
+				);
+			} else { _log('Already loaded.'); }
 		}
 	});
 }
@@ -285,11 +287,11 @@ function _search(keywords){
 		options.current=[];
 		list.forEach(function(keyword){
 			options.index.forEach(function(element,index){
-				if(database[element].genre.indexOf(keyword)>=0 ||
-					database[element].description.indexOf(keyword)>=0 ||
-					database[element].title.indexOf(keyword)>=0 ||
-					database[element].subtitle.indexOf(keyword)>=0 ||
-					database[element].country.name.indexOf(keyword)>=0
+				if(database[element].genre.indexOf(keyword)>=0
+				|| database[element].description.indexOf(keyword)>=0
+				|| database[element].title.indexOf(keyword)>=0
+				|| database[element].subtitle.indexOf(keyword)>=0
+				|| database[element].country.name.indexOf(keyword)>=0
 				){ if(options.current.indexOf(element)<0) options.current.push(element); }
 			});
 		});
@@ -297,11 +299,12 @@ function _search(keywords){
 	else { // disjunctive: reducing results step by step
 		list.forEach(function(keyword){
 			options.index.forEach(function(element,index){
-				if(!(database[element].genre.indexOf(keyword)>=0 ||
-					 database[element].description.indexOf(keyword)>=0 ||
-					 database[element].title.indexOf(keyword)>=0 ||
-					 database[element].subtitle.indexOf(keyword)>=0 ||
-					 database[element].country.name.indexOf(keyword)>=0
+				if(!(
+				   database[element].genre.indexOf(keyword)>=0
+				|| database[element].description.indexOf(keyword)>=0
+				|| database[element].title.indexOf(keyword)>=0
+				|| database[element].subtitle.indexOf(keyword)>=0
+				|| database[element].country.name.indexOf(keyword)>=0
 				)){ options.current.remove(options.current.indexOf(element)); }
 			});
 		});

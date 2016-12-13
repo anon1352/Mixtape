@@ -145,6 +145,14 @@ header {
 
 section { text-align: center; }
 
+pre {
+	display: inline-block;
+	font: 8pt/1.4 "Liberation Mono", Courier, monospace;
+	tab-size: 4;
+	letter-spacing: initial;
+	text-align: left;
+}
+
 article {
 	position: relative;
 	display: inline-block;
@@ -257,7 +265,7 @@ button:hover { background: #39595d; }
 .switch ~ .switch-label:before { content:'+ '; }
 .switch:checked ~ .switch-label:before { content:'- '; }
 .switch-label {}
-.switch-box {}
+.switch-box { text-align: center; }
 
 .button {
 	display: inline-block;
