@@ -227,8 +227,9 @@ function _interact(){
 	_apply('.tag',function(element){ element.onclick=function(){ _load(this.dataset.tag); }; });
 	_apply('.full-tracklist',function(element){
 		element.querySelector('label').onclick=function(event){
-			ajax('res/list/'+this.dataset.href,'get',null,null,
-				function(success){ _id(this.dataset.box).innerHTML='<pre>'+success+'</pre>'; },
+			var set=this.dataset; // kosteel-driven programming
+			if(set.state!==undefined && set.state!='1') ajax('res/list/'+set.href,'get',null,null,
+				function(success){ _id(set.box).innerHTML='<pre>'+success+'</pre>'; set.state='1'; },
 				function(error){ _log(error); }
 			);
 		}
