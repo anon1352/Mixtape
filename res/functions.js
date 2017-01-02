@@ -452,6 +452,7 @@ function _link(link){
 		case 'catbox': r+='catbox">Catbox.moe'; break;
 		case 'mixtape': r+='mixtape">Mixtape.moe'; break;
 		case 'fuwafuwa': r+='fuwa">fuwa.moe'; break;
+		case 'nya': r+='nya">nya.is'; break;
 		case '1339': r+='pomf1339">1339.cf'; break;
 		case 'rghost': r+='rghost">RGhost'; break;
 		default: r+='wtf">Хуй знает какой файлообменник';

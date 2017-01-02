@@ -304,6 +304,24 @@ var database={
 		label:'ra',
 		link:'https://p.fuwafuwa.moe/gcgpsg.mp3',
 		tracklist:'track.list.7.2'
+	},
+	e2017:{
+		tag:'nae',
+		title:'NAE Mixtape #2017',
+		subtitle:'Happy New Tape',
+		edition:'2k17',color:'996793',
+		ambula:'Новогодний микс для RA.',
+		fabula:'',
+		poster:'front-2017.png',
+		date:'31 декабря 2016',
+		size:'149 631 816',
+		duration:'1:25:28:99',
+		genre:['dub','flow','step','atmospheric','dnb','yoba'],
+		bitrate:233,stereo:2,vbr:true,
+		board:'ni',
+		label:'ra',
+		link:'https://u.nya.is/ohpjrp.mp3',
+		tracklist:''
 	}
 	/*
 	e:{
