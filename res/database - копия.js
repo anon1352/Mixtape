@@ -122,7 +122,7 @@ var database={
 		bitrate:208,stereo:2,vbr:true,
 		board:'ni',
 		label:'ra',
-		link:'https://p.fuwafuwa.moe/wozzen.mp3',
+		link:'',
 		tracklist:'track.list.5.0'
 	},
 	e51:{
