@@ -428,14 +428,16 @@ function _show(id){
 						F_link.classList.add('full-link');
 						F_link.innerHTML='<noindex>'+_link(data.link)+'</noindex>';
 					var F_ambula=_create('div');
-						F_ambula.innerHTML=data.ambula;
 						F_ambula.classList.add('full-ambula');
+						//F_ambula.innerHTML=data.ambula;
+						F_ambula.innerHTML='<input name="'+id+'as" id="'+id+'as" type="checkbox" class="switch" /><label for="'+id+'as" class="button switch-label">Амбула</label><div class="switch-box">'+data.ambula+'</div>';
 					var F_fabula=_create('div');
-						F_fabula.innerHTML=data.fabula;
 						F_fabula.classList.add('full-fabula');
+						//F_fabula.innerHTML=data.fabula;
+						F_fabula.innerHTML='<input name="'+id+'fs" id="'+id+'fs" type="checkbox" class="switch" /><label for="'+id+'fs" class="button switch-label">Фабула</label><div class="switch-box">'+data.fabula+'</div>';
 					var F_tracklist=_create('div');
 						F_tracklist.classList.add('full-tracklist');
-						F_tracklist.innerHTML='<input name="'+id+'s" id="'+id+'s" type="checkbox" class="switch" /><label for="'+id+'s" class="button switch-label" data-box="'+id+'b" data-href="'+data.tracklist+'">Треклист</label><div id="'+id+'b" class="switch-box"></div>';
+						F_tracklist.innerHTML='<input name="'+id+'ts" id="'+id+'ts" type="checkbox" class="switch" /><label for="'+id+'ts" class="button switch-label" data-box="'+id+'b" data-href="'+data.tracklist+'">Треклист</label><div id="'+id+'b" class="switch-box"></div>';
 					F_about.appendChilds(F_title,F_subtitle,F_edition,F_date,F_duration,F_genre,F_board,F_specs,F_posters,F_label,F_link,F_ambula,F_fabula,F_tracklist); // закурил
 				expand.appendChilds(F_poster,F_about);
 			expandT.appendChild(expand);
