@@ -89,14 +89,14 @@ var database={
 		link:'https://p.fuwafuwa.moe/lnymbo.rar',
 		tracklist:'track.list.2.2'
 	},
-	e41:{
+	e40:{
 		tag:'nae',
-		title:'NAE Mixtape #4.1',
+		title:'NAE Mixtape #4.0',
 		subtitle:'Last Cast Past',
 		edition:'The Entry',color:'c2905f',
 		ambula:'Хватай кота и двигай танцевать, говорит Мисака, пародируя диджея Смоука.',
 		fabula:'Иногда, когда что-то закончилось и ты уже принял это, остаётся только последний шанс, вспыхивающая на пути внезапным светофором надежда, и ты спрашиваешь себя - хотел ли ты этого? Не думай долго в такие минуты - ответ всегда "да". Небольшой флешбек в прошлое, щепотка хаотичных событий и ты вспоминаешь, каково это - быть вовлечённым, будто это было совсем недавно.',
-		poster:'front-4.1.png',back:'back-4.1.png',
+		poster:'front-4.0.png',back:'back-4.0.png',
 		date:'7 декабря 2016',
 		size:'145 210 128',
 		duration:'1:36:15:01',
@@ -106,6 +106,24 @@ var database={
 		label:'ra',
 		link:'https://p.fuwafuwa.moe/fngzxk.mp3',
 		tracklist:''
+	},
+	e41:{
+		tag:'nae',
+		title:'NAE Mixtape #4.10',
+		subtitle:'Strange planet',
+		edition:'Enter! The World',color:'00863d',
+		ambula:'Этот микстейп собирался долгое время, и каждая композиция здесь несёт маленький кусочек памяти. Почему Strange Planet? Потому что речь здесь идёт не о нашем, обычном мире, где всё по правилам, а о другом, который рядом, но гораздо шире и где происходят совершенно фантастические вещи, а главное - там все твои друзья. Совершенно верно, да, друг мой - речь идёт о фантазии..',
+		fabula:'(?)',
+		poster:'front-4.0.png',back:'back-4.0.png',
+		date:'7 апреля 2017',
+		size:'123 757 896',
+		duration:'01:12:15:01',
+		genre:['electronica','oldschool','heardbeat'],
+		bitrate:228,stereo:2,vbr:true,
+		board:'ni',
+		label:'ra',
+		link:'https://files.catbox.moe/zhnhvj.mp3',
+		tracklist:'track.list.4.1'
 	},
 	e50:{
 		tag:'nae',
